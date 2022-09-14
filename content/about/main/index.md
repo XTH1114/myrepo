@@ -11,7 +11,7 @@ intro: |
   
   I am interested in Causal Inference because it is a very important topic in biomedical data analysis and it could be combined with many methodologies. Its semiparametric analysis is also very interesting to me. I think it is much useful for my future research in biomedical data.
   
-  Published Article: 
+  ## Published Article: 
   
   [Interactive visualization of spatial omics neighborhoods(awaiting peer review)](https://f1000research.com/articles/11-799/v1)
   
