@@ -1,5 +1,5 @@
 ---
-action_label: Read More &rarr;
+action_label: Know more about me &rarr;
 action_link: /about
 action_type: text
 description: Hi, I am Tinghui Xu, a first-year Ph.D. in Biomedical Data Science of University of Wisconsin-Madison. I achieved my Master's Degree in Statistics of UW-Madison in May and my Bachelor's Degree in Statistics in East China Normal University.
