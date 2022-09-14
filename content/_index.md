@@ -8,9 +8,9 @@ images:
 - img/revoir.jpg
 show_action_link: true
 show_social_links: true
-subtitle: Tinghui Xu
+subtitle: University of Wisconsin-Madison
 text_align_left: true
-title: Hugo Apéro
+title: Tinghui Xu
 type: home
 ---
 
