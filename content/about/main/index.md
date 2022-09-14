@@ -13,7 +13,7 @@ intro: |
   
   ## Published Article: 
   
-  [Interactive visualization of spatial omics neighborhoods(awaiting peer review)](https://f1000research.com/articles/11-799/v1)
+  ### [Interactive visualization of spatial omics neighborhoods(awaiting peer review)](https://f1000research.com/articles/11-799/v1)
   
   **Abstract**: Dimensionality reduction of spatial omic data can reveal shared, spatially structured patterns of expression across a collection of genomic features. We studied strategies for discovering and interactively visualizing low-dimensional structure in spatial omic data based on the construction of neighborhood features. We designed quantile and network-based spatial features that result in spatially consistent embeddings. A simulation compares embeddings made with and without neighborhood-based featurization, and a re-analysis of Keren et al., 2019 illustrates the overall workflow. We provide an R package, NBFvis, to support computation and interactive visualization for the proposed dimensionality reduction approach. Code and data for reproducing experiments and analysis are available on GitHub.
   
