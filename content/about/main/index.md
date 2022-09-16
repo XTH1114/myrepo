@@ -6,7 +6,7 @@ use_featured: false # if false, use most recent by date
 number_categories: 3 # set to zero to exclude
 show_intro: true
 intro: |
-  I majored in Statistics during my undergraduate study and am interested in statistics theories. Thus, I came here for Maser's Degree in Statistics last year and graduated in May. My research interests are the application of statistical methods in biological datasets.
+  I majored in Statistics during my undergraduate study and am interested in statistics theories. Thus, I came here for Maser's Degree in Statistics last year and graduated in May. My research interest is the application of statistical methods in biological datasets.
   
   
   I am interested in Causal Inference because it is a very important topic in biomedical data analysis and it could be combined with many methodologies. Its semiparametric analysis is also very interesting to me. I think it is much useful for my future research in biomedical data.
