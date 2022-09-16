@@ -6,10 +6,11 @@ use_featured: false # if false, use most recent by date
 number_categories: 3 # set to zero to exclude
 show_intro: true
 intro: |
-  I majored in Statistics during my undergraduate study and am interested in statistics theories. Thus, I came here for Maser's Degree in Statistics last year and graduated in May. My research interest is the application of statistical methods in biological datasets.
+  I majored in Statistics during my undergraduate study from 2017-2021. I am interested in statistical theories and their applications, and that's why I came to UW-Madison for my Maser's Degree in Statistics last year. Now, I am a Biomedical Data Science Ph.D. of UW-Madison and continue my research in the application of statistical methods in biomedical data.
   
+  As mentioned above, my research interest is the applications of statistical methods in biological datasets, especially dimensionality reduction methods, latent structure models. My former project is about the interactive visualization of the tumor microenvironments using neighborhood featurizations. 
   
-  I am interested in Causal Inference because it is a very important topic in biomedical data analysis and it could be combined with many methodologies. Its semiparametric analysis is also very interesting to me. I think it is much useful for my future research in biomedical data.
+  I am interested in Causal Inference because it is a very important and interesting topic in biomedical data analysis. Also, it could be integrated with many methodologies. My current rotation project is about missing data analysis, which is closely related with causal inference. I think it is much useful for my current project as well as my future research in biomedical data.
   
   ## Published Article: 
   
