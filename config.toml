@@ -104,9 +104,9 @@ enableEmoji = true
     url = "/about/"
     weight = 1
   [[menu.header]]
-    name = "Projects"
-    title = "Project Portfolio"
-    url = "/project/"
+    name = "Blogs"
+    title = "My Blogs"
+    url = "/blogs/"
     weight = 3
     
   # Configure footer
