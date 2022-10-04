@@ -106,7 +106,7 @@ enableEmoji = true
   [[menu.header]]
     name = "Blogs"
     title = "My Blogs"
-    url = "/blog/"
+    url = "/blogs/"
     weight = 3
     
   # Configure footer
