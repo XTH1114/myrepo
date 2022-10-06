@@ -10,7 +10,10 @@ subtitle: with Multiple Causally Ordered Mediators
 title: Semiparametric Estimation for Causal Mediation Analysis
 ---
 
-*This author of this paper is Professor Xiang Zhou from Harvard University.*
+*This author of this paper is Professor Xiang Zhou from Harvard University.*[original paper](https://arxiv.org/abs/2011.12751)
+
+
+
 
 # Introduction
 
