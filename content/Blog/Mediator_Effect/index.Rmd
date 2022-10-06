@@ -5,7 +5,7 @@ categories:
 - Causal Inference
 - Mediation Effect
 date: "2022-10-06"
-excerpt: 
+excerpt: Causal mediation analysis focuses on the pathways through which a treatment affects an outcome. As we know, most papers about mediating effect models involve one single mediator, which is simple and straightforward.
 subtitle: with Multiple Causally Ordered Mediators
 title: Semiparametric Estimation for Causal Mediation Analysis
 ---
@@ -43,7 +43,7 @@ include_graphics("./figures/graphicalmodel.png")
 
 # Question
 
-The question is how to estimate the path-specific effects (PSEs) of the treatment,the college attendance, and the effect of two casually ordered mediators, economic status and civic and political interest.
+The question is how to estimate the path-specific effects (PSEs) of the treatment, the college attendance, and the effect of two casually ordered mediators, economic status and civic and political interest.
 
 
 
