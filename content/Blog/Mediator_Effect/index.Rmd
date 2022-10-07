@@ -6,11 +6,13 @@ categories:
 - Mediation Effect
 date: "2022-10-06"
 excerpt: Causal mediation analysis focuses on the pathways through which a treatment affects an outcome. As we know, most papers about mediating effect models involve one single mediator, which is simple and straightforward.
-subtitle: with Multiple Causally Ordered Mediators
-title: Semiparametric Estimation for Causal Mediation Analysis
+subtitle: Semiparametric Estimation for Causal Mediation Analysis
+title: Multiple Causally Ordered Mediators
 ---
 
-*This author of this paper is Professor Xiang Zhou from Harvard University.*[original paper](https://arxiv.org/abs/2011.12751)
+*This author of this paper is Professor Xiang Zhou from Harvard University.*
+
+[Semiparametric Estimation for Causal Mediation Analysis with Multiple Causally Ordered Mediators](https://arxiv.org/abs/2011.12751)
 
 
 
@@ -42,6 +44,13 @@ The graphical model is as follow.
 ```{r echo=FALSE, fig.align="center", fig.width=20, fig.height=20,warning=F}
 library(knitr)
 include_graphics("./figures/graphicalmodel.png")
+``` 
+
+There are four possible causal paths existing from the treatment to the outcome:
+
+```{r echo=FALSE, fig.align="center", fig.width=20, fig.height=20,warning=F}
+library(knitr) 
+include_graphics("./figures/possible_path.png")
 ``` 
 
 # Question
