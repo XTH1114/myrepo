@@ -18,9 +18,11 @@ The authors developed a new method for g-formula called parametric g-formula, an
 
 # Background setting
 
-The author would like to know how much they could reduce mortality among bone marrow transplant patients by prescribing a new drug that prevents *graft-versus-host disease(GvHD)*, a side effect of allogeneic marrow transplantation. Whether the patient gets the GvHD(i.e., whether the patient takes the prevention drug) is the treatment variable in this experiment. 
+The author would like to know how much they could reduce mortality among bone marrow transplant patients by prescribing a new drug that prevents **graft-versus-host disease(GvHD)**, a side effect of allogeneic marrow transplantation. Whether the patient gets the GvHD(i.e., whether the patient takes the prevention drug) is the treatment variable in this experiment. 
 
-Although GvHD is associated in observational studies with an increased risk of mortality, it also reduces the risk of *leukemia relapse*. It means that any drug that prevents GvHD may have the very undesirable side effect of increasing the rate of relapse. Note that leukemia relapse is a risk factor for mortality and subsequent GvHD and it will also decrease the incidence of subsequent relapse, which means that leukemia relapse is a *time-varying confounder*.
+Although GvHD is associated in observational studies with an increased risk of mortality, it also reduces the risk of **leukemia relapse**. It means that any drug that prevents GvHD may have the very undesirable side effect of increasing the rate of relapse. 
+
+Note that leukemia relapse is a risk factor for mortality and subsequent GvHD and it will also decrease the incidence of subsequent relapse, which means that leukemia relapse is a **time-varying confounder**.
 
 # Goal
 
@@ -85,7 +87,7 @@ Note that $Pr(V=v_0|A_{k-1}=a_{k-1},L_k=l_k,Y_{k-1}=0)$ because $V$ is irrelativ
 
 $$
 \begin{aligned}
-E(Y_t)&=\sum_{k=1}^{t}\sum_{a}\sum_{l}Pr(Y_k=1|A_k=a_k,L_k=l_k,V=v_o,Y_{k-1}=0)Pr(A_k=a_k|A_{k-1}=a_{k-1},L_k,V=v_o,Y_{k-1}=0)\times \\
+E(Y_t(\bf{a}))&=\sum_{k=1}^{t}\sum_{a}\sum_{l}Pr(Y_k=1|A_k=a_k,L_k=l_k,V=v_o,Y_{k-1}=0)Pr(A_k=a_k|A_{k-1}=a_{k-1},L_k,V=v_o,Y_{k-1}=0)\times \\
 &Pr(L_k=l_k|A_{k-1}=a,L_k=l_k,V=v_o,Y_{k-1}=0)Pr(V=v_0)Pr(Y_{k-1}=0) \because V \text{ is irrelative to other variables} \\
 &=\cdots\\
 &=\sum_{k=1}^{t}\sum_{a}\sum_{l}Pr(Y_k=1|A_k=a,L_k=l_k,V=v_o,Y_{k-1}=0) \times \\
