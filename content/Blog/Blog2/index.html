@@ -1,7 +1,7 @@
 ---
 author: "Tinghui Xu"
 categories:
-- Timge-varying confounder
+- Time-varying confounder
 - Causal Inference
 - Mediation Effect
 date: "2022-10-27"
@@ -85,8 +85,10 @@ E(Y_t)&amp;=\sum_{k=1}^{t}\sum_{a}\sum_{l}Pr(Y_k=1|A_k=a_k,L_k=l_k,V=v_o,Y_{k-1}
 &amp;Pr(Y_{m-1}=0|A_{m-1}=a_{m-1},L_{m-1}=l_{m-1},V=v_o,Y_{m-2}=0)] \\
 \end{aligned}
 \]</span></p>
-<p>The author constructed three parameter models by samples to predict the following probabilities: <span class="math inline">\(Pr(L_k=l_k|A_{k-1}=a_{k-1]},L_k=l_k,V=v_o,Y_{k-1}=0)\)</span>, <span class="math inline">\(Pr(A_k=a_k|A_{k-1}=a_{k-1]},L_k=l_k,V=v_o,Y_{k-1}=0)\)</span>,
-<span class="math inline">\(Pr(Y_k=1|A_{k}=a_{k]},L_k=l_k,V=v_o,Y_{k-1}=0)\)</span>. Hence, we can compute <span class="math inline">\(E(Y_t)\)</span> by the equation above.</p>
+<p>The author constructed three parameter models by samples to predict the following probabilities:</p>
+<p><span class="math inline">\(Pr(L_k=l_k|A_{k-1}=a_{k-1]},L_k=l_k,V=v_o,Y_{k-1}=0)\)</span>,</p>
+<p><span class="math inline">\(Pr(A_k=a_k|A_{k-1}=a_{k-1]},L_k=l_k,V=v_o,Y_{k-1}=0)\)</span>,</p>
+<p><span class="math inline">\(Pr(Y_k=1|A_{k}=a_{k]},L_k=l_k,V=v_o,Y_{k-1}=0)\)</span>. Hence, we can compute <span class="math inline">\(E(Y_t)\)</span> by the equation above.</p>
 <p>If we want to intervene certain variables like <span class="math inline">\(A_k\)</span>, we can use the same g-formula with <span class="math inline">\(A_k=a\)</span>. This computes the effect of GvHD on mortality rates.</p>
 </div>
 <div id="interpretation" class="section level1">
