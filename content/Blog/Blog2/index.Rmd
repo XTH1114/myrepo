@@ -1,0 +1,88 @@
+---
+author: "Tinghui Xu"
+categories:
+- Timge-varying confounder
+- Causal Inference
+- Mediation Effect
+date: "2022-10-27"
+subtitle: Identification in Parameter G-formula
+title: Time-varying Mediating Model
+---
+
+*This author of this paper is Professor Xiang Zhou from Harvard University.*
+
+[The parametric G-formula for time-to-event data: towards intuition with a worked example](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4310506/#SD2)
+
+
+# Assumptions:
+
+The assumptions in this paper are the three basic assumptions:
+
+* Positivity; ($P(A=a)\in (0,1)$ for all $a$.)
+* SUTVA;
+* Conditional exchangeability.
+
+The first two assumptions are very common in casual inference paper and it is a common practice that we assume they are satisfied. 
+
+As to the last assumption, the author argue that they assume that they strive to measure and control for strong confounders of the exposure-outcome relationship to avoid making inference based on spurious relationships, which could be considered as they satisfying the conditional exchangeability. 
+
+# Notation
+
+| Variable      | Description |
+| ----------- | ----------- |
+| Y_k      | indicator of death(1=yes,0=no) at the time $k$ |
+| A_k   | indicator of GvHD (1= yes, 0=no) at the time $k$  |
+| L_k   | indicator of normal platelet levels and relapse  (1= normal platelet levels or relapse, 0=not in relapse or below normal platelets)) at the time $k$  |
+| V      | covariates of patients like sex and age |
+
+# DAG
+
+```{r echo=FALSE, fig.align="center", fig.width=20, fig.height=20,warning=F}
+library(knitr)
+include_graphics("./figures/DAG.jpeg")
+``` 
+
+# Identification
+
+Here we use the g-formula to compute the marginal incidence of death by the end of follow up at time $t$ under intervening $A_k$. For simplicity, we assume that all the data are observed so the $cencor_k$ is ignored in this g-formula compared with the one in the paper.
+
+
+
+$$
+\begin{aligned}
+E(Y_t(\bf{a}))&=\sum_{k=1}^{t}\sum_{a}\sum_{l}{Pr(Y_k=1|A_k=a_k,L_k=l_k,V=v_o,Y_{k-1}=0)\\Pr(A_k=a,L_k=l_k,V=v_o,Y_{k-1}=0)}\because\text{conditional probability}\\
+&=\sum_{k=1}^{t}\sum_{a}\sum_{l}{Pr(Y_k=1|A_k=a_k,L_k=l_k,V=v_o,Y_{k-1}=0)\times\\
+Pr(A_k=a_k|A_{k-1}=a_{k-1},L_k,V=v_o,Y_{k-1}=0) \times \\
+Pr(L_k=l_k|A_{k-1}=a,L_k=l_k,V=v_o,Y_{k-1}=0)\times\\
+Pr(V=v_0|A_{k-1}=a_{k-1},L_k=l_k,Y_{k-1}=0)Pr(Y_{k-1}=0)}
+\end{aligned}
+$$
+
+Note that $Pr(V=v_0|A_{k-1}=a_{k-1},L_k=l_k,Y_{k-1}=0)$ because $V$ is d-separated from other variables. Thus, 
+
+
+$$
+\begin{aligned}
+E(Y_t)&=\sum_{k=1}^{t}\sum_{a}\sum_{l}Pr(Y_k=1|A_k=a_k,L_k=l_k,V=v_o,Y_{k-1}=0)Pr(A_k=a_k|A_{k-1}=a_{k-1},L_k,V=v_o,Y_{k-1}=0)\times \\
+&Pr(L_k=l_k|A_{k-1}=a,L_k=l_k,V=v_o,Y_{k-1}=0)Pr(V=v_0)Pr(Y_{k-1}=0) \because V \text{ is d-separated from other variables( Markov properties)} \\
+&=\cdots\\
+&=\sum_{k=1}^{t}\sum_{a}\sum_{l}Pr(Y_k=1|A_k=a,L_k=l_k,V=v_o,Y_{k-1}=0) \times \\
+&\prod_{m=1}^{k}[Pr(A_m=a_m|A_{m-1}=a_{m-1},L_m=l_m,V=v_o,Y_{k-1}=0)Pr(L_m=l_m|A_{m-1}=a,L_m,V=v_o,Y_{m-1}=0)Pr(V=v_0)\times \\
+&Pr(Y_{m-1}=0|A_{m-1}=a_{m-1},L_{m-1}=l_{m-1},V=v_o,Y_{m-2}=0)] \\
+\end{aligned}
+$$
+
+
+The author constructed three parameter models by samples to predict the following probabilities: $Pr(L_k=l_k|A_{k-1}=a_{k-1]},L_k=l_k,V=v_o,Y_{k-1}=0)$, $Pr(A_k=a_k|A_{k-1}=a_{k-1]},L_k=l_k,V=v_o,Y_{k-1}=0)$,
+$Pr(Y_k=1|A_{k}=a_{k]},L_k=l_k,V=v_o,Y_{k-1}=0)$. Hence, we can compute $E(Y_t)$ by the equation above.
+
+If we want to intervene certain variables like $A_k$, we can use the same g-formula with $A_k=a$. This computes the effect of GvHD on mortality rates.
+
+
+# Interpretation
+
+From the g-formula we get, we can see that the mortality rate is the summation and product of the probabilities of many variables given that at the previous time. One observation is that this paper treats the platelet level as an indicator of the leukemia relapse. I think it could be a proxy variable for the leukemia relapse.
+
+
+
+
