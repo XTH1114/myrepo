@@ -25,3 +25,40 @@ title: Estimation in Time-varying Mediating Model using MonteCarlo
 <h1>Goal</h1>
 <p>The author would like to compare the mortality with and without the GvHD prevention drug with the time-varying confounder taken into consideration.</p>
 </div>
+<div id="notation" class="section level1">
+<h1>Notation</h1>
+<table>
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(Y_k\)</span></td>
+<td>indicator of death(1=yes,0=no) at the time <span class="math inline">\(k\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(A_k\)</span></td>
+<td>indicator of GvHD (1= yes, 0=no) at the time <span class="math inline">\(k\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(L_k\)</span></td>
+<td>indicator of normal platelet levels and relapse (1= normal platelet levels or relapse, 0=not in relapse or below normal platelets)) at the time <span class="math inline">\(k\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(V\)</span> (or <span class="math inline">\(X\)</span> in the DAG)</td>
+<td>covariates of patients like sex and age</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="dag" class="section level1">
+<h1>DAG</h1>
+<p><img src="figures/DAG.jpeg" style="display: block; margin: auto;" /></p>
+</div>
