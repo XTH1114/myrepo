@@ -1,0 +1,27 @@
+---
+author: "Tinghui Xu"
+categories:
+- Time-varying confounder
+- Causal Inference
+- Mediation Effect
+date: "2022-11-16"
+title: Estimation in Time-varying Mediating Model using MonteCarlo
+---
+
+
+
+<p>The original paper is <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4310506/#SD2">The parametric G-formula for time-to-event data: towards intuition with a worked example</a>.</p>
+<div id="introduction" class="section level1">
+<h1>Introduction</h1>
+<p>The authors developed a new method for g-formula called parametric g-formula, and they applied it to a worked example about the mortality among the bone marrow transplant patients.</p>
+</div>
+<div id="background-setting" class="section level1">
+<h1>Background setting</h1>
+<p>The author would like to know how much they could reduce mortality among bone marrow transplant patients by prescribing a new drug that prevents <strong>graft-versus-host disease(GvHD)</strong>, a side effect of allogeneic marrow transplantation. Whether the patient gets the GvHD(i.e., whether the patient takes the prevention drug) is the treatment variable in this experiment.</p>
+<p>Although GvHD is associated in observational studies with an increased risk of mortality, it also reduces the risk of <strong>leukemia relapse</strong>. It means that any drug that prevents GvHD may have the very undesirable side effect of increasing the rate of relapse.</p>
+<p>Note that leukemia relapse is a risk factor for mortality and subsequent GvHD and it will also decrease the incidence of subsequent relapse, which means that leukemia relapse is a <strong>time-varying confounder</strong>.</p>
+</div>
+<div id="goal" class="section level1">
+<h1>Goal</h1>
+<p>The author would like to compare the mortality with and without the GvHD prevention drug with the time-varying confounder taken into consideration.</p>
+</div>
