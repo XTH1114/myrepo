@@ -1,0 +1,88 @@
+---
+author: "Tinghui Xu"
+categories:
+- Sensitivity Analysis
+- Time-varying confounder
+- Causal Inference
+- Mediation Effect
+date: "2022-12-04"
+title: Sensitivity in Time-varying Mediating Model using MonteCarlo 
+---
+
+
+
+<p>The original paper is <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4310506/#SD2">The parametric G-formula for time-to-event data: towards intuition with a worked example</a>.</p>
+<div id="introduction" class="section level1">
+<h1>Introduction</h1>
+<p>The authors developed a new method for g-formula called parametric g-formula, and they applied it to a worked example about the mortality among the bone marrow transplant patients.</p>
+</div>
+<div id="background-setting" class="section level1">
+<h1>Background setting</h1>
+<p>The author would like to know how much they could reduce mortality among bone marrow transplant patients by prescribing a new drug that prevents <strong>graft-versus-host disease(GvHD)</strong>, a side effect of allogeneic marrow transplantation. Whether the patient gets the GvHD(i.e., whether the patient takes the prevention drug) is the treatment variable in this experiment.</p>
+<p>Although GvHD is associated in observational studies with an increased risk of mortality, it also reduces the risk of <strong>leukemia relapse</strong>. It means that any drug that prevents GvHD may have the very undesirable side effect of increasing the rate of relapse.</p>
+<p>Note that leukemia relapse is a risk factor for mortality and subsequent GvHD and it will also decrease the incidence of subsequent relapse, which means that leukemia relapse is a <strong>time-varying confounder</strong>.</p>
+</div>
+<div id="goal" class="section level1">
+<h1>Goal</h1>
+<p>The author would like to compare the mortality with and without the GvHD prevention drug with the time-varying confounder taken into consideration.</p>
+</div>
+<div id="notation" class="section level1">
+<h1>Notation</h1>
+<table>
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(Y_k\)</span></td>
+<td>indicator of death(1=yes,0=no) at the time <span class="math inline">\(k\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(A_k\)</span></td>
+<td>indicator of GvHD (1= yes, 0=no) at the time <span class="math inline">\(k\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(L_k\)</span></td>
+<td>indicator of normal platelet levels and relapse (1= normal platelet levels or relapse, 0=not in relapse or below normal platelets)) at the time <span class="math inline">\(k\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(V\)</span> (or <span class="math inline">\(X\)</span> in the DAG)</td>
+<td>covariates of patients like sex and age</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="dag" class="section level1">
+<h1>DAG</h1>
+</div>
+<div id="estimation" class="section level1">
+<h1>Estimation</h1>
+<p>From the last blog, we have the following formula for the estimation.</p>
+<p><span class="math display">\[
+\begin{aligned}
+E(Y_t(\bf{a}))&amp;=\sum_{k=1}^{t}\sum_{a}\sum_{l}{Pr(Y_k=1|A_k=a_k,L_k=l_k,V=v_o,Y_{k-1}=0)\\
+Pr(A_k=a,L_k=l_k,V=v_o,Y_{k-1}=0)}\because\text{conditional probability}\\
+&amp;=\sum_{k=1}^{t}\sum_{a}\sum_{l}{Pr(Y_k=1|A_k=a_k,L_k=l_k,V=v_o,Y_{k-1}=0)\times\\
+Pr(A_k=a_k|A_{k-1}=a_{k-1},L_k,V=v_o,Y_{k-1}=0) \times \\
+Pr(L_k=l_k|A_{k-1}=a,L_k=l_k,V=v_o,Y_{k-1}=0)\times\\
+Pr(V=v_0|A_{k-1}=a_{k-1},L_k=l_k,Y_{k-1}=0)\times\\
+Pr(Y_{k-1}=0)}
+\end{aligned}
+\]</span></p>
+<p>The formula seems complex and have no closed form for the expectation. However, the authors provides a clever way to get its expectation using Monte-Carlo Simulation.</p>
+<ul>
+<li><p>Step 1: the authors perform a <em>pooled logistic regression</em> model (i.e., a logistic model fit to all person periods )on the current dataset first to construct all the conditional probabilities in the formula. Also, they include time (i.e. days since transplant) in the model using a set of polynomial terms. The models for each covariate on day k were fit using only person-days for which the patient had not yet experienced each time-varying covariate on day k − 1.</p></li>
+<li><p>Step 2: After they deriving all the conditional probabilities, the second step is to generate “pseudo-patients” from Monte Carlo sampling. Although they only have 137 patients, they re-sample 13700 pseudo-patients retaining only baseline covariates from these 137 patients with replacement.</p></li>
+<li><p>Step 3: Next, they compute the probabilities of these binary covariates (<span class="math inline">\(Y, A, L\)</span>) conditioning on the baseline covariates (<span class="math inline">\(V\)</span>) and sample from the corresponding Bernoulli distribution to get its value. For example, we could simulate the value of <span class="math inline">\(Y_1\)</span> (Whether the patient died on the first day from transplant) by <span class="math inline">\(Bernoulli(A_1,V,L_1)\)</span>. Also, the value of <span class="math inline">\(A_1\)</span> and <span class="math inline">\(L_1\)</span> are generated similarly.</p></li>
+</ul>
+<p>From the simulation above, the authors generate 13700 Monte Carlo samples from this time-varying model, and it is easier to estimate the effects using these samples.</p>
+<p>For instance, they concatenated the datasets from Step 2, estimating the hazard ratio by comparing the hazards in the “natural course” dataset with those in the “prevented” dataset. This was done by using an indicator variable for the dataset (1=“natural course,” 0=“prevented”) and using that indicator as the exposure variable in a Cox model.</p>
+<p>To estimate confidence intervals for the hazard ratio, they repeated Steps 1-3 on 4000 samples of size 137 taken at random with replacement from the original data. The standard deviation (SD) of the 4000 log-hazard ratios approximates the standard error of the log-hazard ratio, and was used to calculate 95% confidence intervals (CIs) using the normal approximation: log-hazard ratio ±1.96*SD(log-hazard ratio).</p>
+</div>
