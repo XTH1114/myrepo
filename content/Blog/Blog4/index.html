@@ -61,6 +61,7 @@ title: Sensitivity in Time-varying Mediating Model using MonteCarlo
 </div>
 <div id="dag" class="section level1">
 <h1>DAG</h1>
+<p><img src="figures/DAG.jpeg" style="display: block; margin: auto;" /></p>
 </div>
 <div id="estimation" class="section level1">
 <h1>Estimation</h1>
@@ -85,4 +86,27 @@ Pr(Y_{k-1}=0)}
 <p>From the simulation above, the authors generate 13700 Monte Carlo samples from this time-varying model, and it is easier to estimate the effects using these samples.</p>
 <p>For instance, they concatenated the datasets from Step 2, estimating the hazard ratio by comparing the hazards in the “natural course” dataset with those in the “prevented” dataset. This was done by using an indicator variable for the dataset (1=“natural course,” 0=“prevented”) and using that indicator as the exposure variable in a Cox model.</p>
 <p>To estimate confidence intervals for the hazard ratio, they repeated Steps 1-3 on 4000 samples of size 137 taken at random with replacement from the original data. The standard deviation (SD) of the 4000 log-hazard ratios approximates the standard error of the log-hazard ratio, and was used to calculate 95% confidence intervals (CIs) using the normal approximation: log-hazard ratio ±1.96*SD(log-hazard ratio).</p>
+<p><img src="figures/flowchart.jpeg" style="display: block; margin: auto;" /></p>
+</div>
+<div id="sensitivity-analysis" class="section level1">
+<h1>Sensitivity Analysis</h1>
+<div id="what-assumptions-have-you-made-that-are-important-to-your-inferencesconclusions" class="section level2">
+<h2>1. What assumptions have you made that are important to your inferences/conclusions?</h2>
+<p>In the setting, the specification of the models for the conditional probability models are very important for the downstream calculations. In this paper, they tried different models to fit the conditional probabilities and chose the best suitable one. However, it could be the case that the true models are not in these candidates and there exists a better model than the chosen one. The parametric g-formula is especially vulnerable to the assumption of correct model specification, due to the use of multiple models.</p>
+<p>Another important assumption is that the effect measure is constant across levels of confounders included in the model. It is required for getting rid of the time-vary confounders by regression. However, this assumption is too strong in the time-varying models and it is hard to prove.</p>
+<p>Also, the conditional exchangeablility are essential in this time-varying models and it is also the foundation that we can apply the causal inference to this dataset.</p>
+</div>
+</div>
+<div id="what-alternatives-to-estimationimplementationidentification-are-available-to-investigate-sensitivity-of-your-conclusionsinferences-to-your-assumptions" class="section level1">
+<h1>2. What alternatives to estimation/implementation/identification are available to investigate sensitivity of your conclusions/inferences to your assumptions?</h1>
+<p>For the assumption of correct model specification, we can try to use different regression models to fit the conditional probabilities and then check their variances. We can also try to change the coefficients in the regression models to whether the corresponding results are changed greatly. Another intuitive way is that we could build a simulation to see what will happen if we intentionally misspecify the conditional expectation models.</p>
+<p>For the assumptions that the effect measure is constant across levels of confounders included in the model, we could construct a simulation setting that the effect measure is correlated with the confounders and check whether the corresponding estimators are biased significantly. Another way is to test whether this assumption holds in the given dataset. In my opinion, stratifying the data according to the confounder levels will do.</p>
+</div>
+<div id="how-would-your-inferencesconclusions-change-if-at-all-if-your-assumptions-were-violated" class="section level1">
+<h1>3. How would your inferences/conclusions change (if at all) if your assumptions were violated?</h1>
+<p>If the conditional exchangeability are violated, the estimator is questionable since it violated the basic assumption for the parametric g-formula. If we violate the assumptions that the effect measure is constant across levels of confounders included in the model, it means that the effect of the confounders are not identifiable and we cannot use the current g-formula to calculate ATE since it is definitely biased. If we violated the assumption of the correct model specification, the estimation is biased since the parametric g-formula is especially vulnerable to the assumption of correct model specification, due to the use of multiple models.</p>
+</div>
+<div id="what-assumptions-if-at-all-cannot-be-investigated-in-any-principled-way" class="section level1">
+<h1>4. What assumptions (if at all) cannot be investigated in any principled way</h1>
+<p>The conditional exchangeability cannot be checked in any principled way since the exchangeability cannot be empirically tested in observational studies. We can only assume it is satisfied in our data. It is also one of the most essential assumptions in causal inference.</p>
 </div>
