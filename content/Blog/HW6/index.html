@@ -1,0 +1,14 @@
+---
+author: "Tinghui Xu"
+categories:
+- Time-varying confounder
+- Causal Inference
+- Mediation Effect
+date: "2022-12-12"
+title: Conclusions for the project
+---
+
+
+
+<p>The original paper is <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4310506/#SD2">The parametric G-formula for time-to-event data: towards intuition with a worked example</a>.</p>
+<p>My project is about how to use g-formula to estimate the effects in the time-varying model. The authors use parametric g-formula to rule out the effect of confounders and construct a solid time-varying models, based on which they implement a Monte-Carlo simulation to generate pseudo-samples in time-varying models and estimate effects.In this project, I chose a paper about a parametric g-formula for a time-vary model in a real example. After the careful analysis of this paper, I think it is a great idea to use Monte-Carlo simulation to solve the problem that there is no enough samples for the time-varying models. The major limitation is that the use of multimodels makes the methodology highly dependent on the correct model assumption, though the g-formula is rather simple. Also, the sensitivity for other assumptions are needed to be checked further. Future work could focus on how to use some non-parametric regression models to fit the regression models for conditional expectations. In a nut shell, if someone wants to rule out the confounding effects in such time-vary models, the idea of this paper is very heuristic: the g-formula isn’t too complex under given assumptions and all the conditional expections could be estimated by regression. What’s more, they generate the pseudo-samples using the fitted conditional probabilities and estimate the effects directly. It offers a quite feasible estimation for such problems using Monte-Carlo simulations.</p>
